@@ -1,15 +1,16 @@
+package test.bank;
 
 import static org.junit.Assert.*;
-import model.Account;
-import model.MyException;
+import com.bank.ChekingAccount;
+import com.bank.MyException;
 
 import org.junit.Before;
 import org.junit.Test;
 
 
-public class AccountTest {
+public class ChekingAccountTest {
 
-	Account account = new Account(1, "Juan Perez");
+	ChekingAccount account = new ChekingAccount(1, "Juan Perez",300.00);
 	
 	@Before
 	public void setUp() throws Exception {	
@@ -48,11 +49,21 @@ public class AccountTest {
 	}
 	
 	@Test
+	public void testWithdrawOnAccountLimit() {
+		try {
+			account.withdrawOnAccount(1200.00);
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+		assertEquals(account.getBalance(), Double.valueOf(-200.00));
+	}
+	
+	@Test
 	public void testWithdrawOnAccountException() {
 		try {
 			account.withdrawOnAccount(2000.00);
 		} catch (MyException e) {
-			assertEquals(e.getMessage(), ("Is not possible to withdraw 2000.0, the amount is more than the balance on the account"));
+			assertEquals(e.getMessage(), ("Is not possible to withdraw 2000.0, the amount is more than the balance on the account plus the limit 300.0"));
 		}
 	}
 	

@@ -1,9 +1,9 @@
-package model;
+package com.bank;
 
 import java.io.*;
 
-import model.Account;
-import model.MyException;
+import com.bank.Account;
+import com.bank.MyException;
 
 public class Account implements Serializable {
 

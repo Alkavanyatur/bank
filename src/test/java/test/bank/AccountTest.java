@@ -1,16 +1,16 @@
+package test.bank;
 
 import static org.junit.Assert.*;
-import model.Account;
-import model.MyException;
-import model.SavingAccount;
+import com.bank.Account;
+import com.bank.MyException;
 
 import org.junit.Before;
 import org.junit.Test;
 
 
-public class SavingAccountTest {
+public class AccountTest {
 
-	SavingAccount account = new SavingAccount(1, "Juan Perez");
+	Account account = new Account(1, "Juan Perez");
 	
 	@Before
 	public void setUp() throws Exception {	
@@ -26,7 +26,6 @@ public class SavingAccountTest {
 		} catch (MyException e) {
 			e.printStackTrace();
 		}
-		
 		assertEquals(account.getBalance(), Double.valueOf(1200.00));
 	}
 
@@ -63,7 +62,7 @@ public class SavingAccountTest {
 		
 		account.payInterest();
 		
-		assertNotEquals(account.getBalance(), Double.valueOf(1000.00));
+		assertEquals(account.getBalance(), Double.valueOf(1000.00));
 	}
 
 }
